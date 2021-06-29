@@ -150,6 +150,10 @@ export default {
     invoiceItemList: [],
     invoiceTotal: 0
   }),
+  created () {
+    this.invoiceDateUnix = Date.now()
+    this.invoiceDate = new Date(this.invoiceDateUnix).toLocaleDateString('en-US', this.dateOptions)
+  },
   methods: {
     ...mapMutations(['TOGGLE_INVOICE']),
     closeInvoice () {
