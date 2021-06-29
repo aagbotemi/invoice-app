@@ -22,7 +22,6 @@ export default {
     closeInvoice () {
       this.TOGGLE_INVOICE()
     }
-
   }
 }
 </script>
