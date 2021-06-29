@@ -1,11 +1,9 @@
 <template>
   <div @click="checkClick" ref="invoiceWrap" class="invoice-wrap flex flex-column">
     <form @submit.prevent="submitForm" class="invoice-content">
-<!--      <Loading v-show="loading" />-->
+
       <h1>New Invoice</h1>
       <h1>Edit Invoice</h1>
-      <!--<h1 v-if="!editInvoice">New Invoice</h1>
-            <h1 v-else>Edit Invoice</h1>-->
 
       <!-- Bill From -->
       <div class="bill-from flex flex-column">
@@ -115,9 +113,8 @@
           <button type="button" @click="closeInvoice" class="red">Cancel</button>
         </div>
         <div class="right flex">
-          <button v-if="!editInvoice" type="submit" @click="saveDraft" class="dark-purple">Save Draft</button>
-          <button v-if="!editInvoice" type="submit" @click="publishInvoice" class="purple">Create Invoice</button>
-<!--          <button v-if="editInvoice" type="submit" class="purple">Update Invoice</button>-->
+          <button type="submit" @click="saveDraft" class="dark-purple">Save Draft</button>
+          <button type="submit" @click="publishInvoice" class="purple">Create Invoice</button>
         </div>
       </div>
     </form>
@@ -125,6 +122,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'InvoiceModal',
   data: () => ({
@@ -151,7 +150,13 @@ export default {
     invoiceDraft: null,
     invoiceItemList: [],
     invoiceTotal: 0
-  })
+  }),
+  methods: {
+    ...mapMutations(['TOGGLE_INVOICE']),
+    closeInvoice () {
+      this.TOGGLE_INVOICE()
+    }
+  }
 }
 </script>
 
