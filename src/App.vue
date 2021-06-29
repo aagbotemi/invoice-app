@@ -1,9 +1,13 @@
 <template>
-  <div class="app flex flex-column">
+  <div v-if="!mobile" class="app flex flex-column">
     <Navigation />
     <div class="app-content flex flex-column">
       <router-view />
     </div>
+  </div>
+  <div v-else class="mobile-message flex flex-column">
+    <h2>Sorry, this app is not supported on mobile devices</h2>
+    <p>To use this app, please use a computer or Tablet</p>
   </div>
 </template>
 
@@ -13,6 +17,23 @@ import Navigation from './components/Navigation'
 export default {
   components: {
     Navigation
+  },
+  data: () => ({
+    mobile: null
+  }),
+  created () {
+    this.checkScreen()
+    window.addEventListener('resize', this.checkScreen)
+  },
+  methods: {
+    checkScreen () {
+      const windowWidth = window.innerWidth
+      if (windowWidth <= 750) {
+        this.mobile = true
+        return
+      }
+      this.mobile = false
+    }
   }
 }
 </script>
