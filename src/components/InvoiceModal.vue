@@ -192,7 +192,7 @@ export default {
   },
   methods: {
     ...mapMutations(['TOGGLE_INVOICE', 'TOGGLE_MODAL', 'TOGGLE_EDIT_INVOICE']),
-    ...mapActions(['UPDATE_INVOICE']),
+    ...mapActions(['UPDATE_INVOICE', 'GET_INVOICES']),
     checkClick (e) {
       if (e.target === this.$refs.invoiceWrap) {
         this.TOGGLE_MODAL()
@@ -264,6 +264,8 @@ export default {
       this.loading = false
 
       this.TOGGLE_INVOICE()
+
+      await this.GET_INVOICES()
     },
     async updateInvoice () {
       if (this.invoiceItemList.length <= 0) {
