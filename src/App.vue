@@ -1,14 +1,15 @@
 <template>
-  <div v-if="invoicesLoaded">
+  <div>
     <div v-if="!mobile" class="app flex flex-column">
       <Navigation />
-      <div class="app-content flex flex-column">
+      <div v-if="invoicesLoaded" class="app-content flex flex-column">
         <Modal v-if="modalActive" />
         <transition name="invoice">
           <InvoiceModal v-if="invoiceModal" />
         </transition>
         <router-view />
       </div>
+      <Loading v-else />
     </div>
     <div v-else class="mobile-message flex flex-column">
       <h2>Sorry, this app is not supported on mobile devices</h2>
@@ -22,9 +23,11 @@ import Navigation from './components/Navigation'
 import InvoiceModal from './components/InvoiceModal'
 import Modal from './components/Modal'
 import { mapActions, mapState } from 'vuex'
+import Loading from './components/Loading'
 
 export default {
   components: {
+    Loading,
     Navigation,
     InvoiceModal,
     Modal
