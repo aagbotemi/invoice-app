@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" style="color:#fff;">
     Hello World
   </div>
 </template>
