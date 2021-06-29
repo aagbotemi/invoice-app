@@ -192,7 +192,7 @@ export default {
   },
   methods: {
     ...mapMutations(['TOGGLE_INVOICE', 'TOGGLE_MODAL', 'TOGGLE_EDIT_INVOICE']),
-    ...mapActions(['UPDATE_INVOICES']),
+    ...mapActions(['UPDATE_INVOICE']),
     checkClick (e) {
       if (e.target === this.$refs.invoiceWrap) {
         this.TOGGLE_MODAL()
@@ -299,7 +299,7 @@ export default {
         docId: this.docId,
         routeId: this.$route.params.invoiceId
       }
-      await this.UPDATE_INVOICES(data)
+      await this.UPDATE_INVOICE(data)
     },
     submitForm () {
       if (this.editInvoice) {

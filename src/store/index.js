@@ -71,13 +71,18 @@ export default createStore({
       })
       commit('INVOICES_LOADED')
     },
-    async UPDATE_INVOICES ({ commit, dispatch }, { docId, routeId }) {
+    async UPDATE_INVOICE ({ commit, dispatch }, { docId, routeId }) {
       commit('DELETE_INVOICE', docId)
       await dispatch('GET_INVOICES')
       commit('TOGGLE_INVOICE')
       commit('TOGGLE_EDIT_INVOICE')
       commit('SET_CURRENT_INVOICE', routeId)
       //
+    },
+    async DELETE_INVOICE ({ commit }, docId) {
+      const getInvoice = db.collection('invoice').doc(docId)
+      await getInvoice.delete()
+      commit('DELETE_INVOICE', docId)
     }
   },
   modules: {
