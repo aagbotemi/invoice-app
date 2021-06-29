@@ -28,7 +28,7 @@
       </div>
     </div>
     <!-- Invoices -->
-    <div v-if="invoiceData.length > 4">
+    <div v-if="invoiceData.length > 0">
       <Invoice v-for="(invoice, index) in invoiceData" :invoice="invoice" :key="index" />
     </div>
     <div v-else class="empty flex flex-column">
