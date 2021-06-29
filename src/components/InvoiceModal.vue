@@ -3,7 +3,6 @@
     <form @submit.prevent="submitForm" class="invoice-content">
 
       <h1>New Invoice</h1>
-      <h1>Edit Invoice</h1>
 
       <!-- Bill From -->
       <div class="bill-from flex flex-column">
