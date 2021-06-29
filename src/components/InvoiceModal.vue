@@ -2,6 +2,7 @@
   <div @click="checkClick" ref="invoiceWrap" class="invoice-wrap flex flex-column">
     <form @submit.prevent="submitForm" class="invoice-content">
 
+      <Loading v-show="loading" />
       <h1>New Invoice</h1>
 
       <!-- Bill From -->
@@ -124,9 +125,13 @@
 import { mapMutations } from 'vuex'
 import { uid } from 'uid'
 import db from '../firebase/firebaseInit'
+import Loading from './Loading'
 
 export default {
   name: 'InvoiceModal',
+  components: {
+    Loading
+  },
   data: () => ({
     dateOptions: { year: 'numeric', month: 'short', day: 'numeric' },
     docId: null,
@@ -189,6 +194,7 @@ export default {
       if (this.invoiceItemList.length <= 0) {
         alert('Please ensure you filled out work items')
       }
+      this.loading = true
       this.calInvoiceTotal()
 
       const database = db.collection('invoice').doc()
@@ -216,6 +222,8 @@ export default {
         invoiceDraft: this.invoiceDraft,
         invoicePaid: null
       })
+
+      this.loading = false
 
       this.TOGGLE_INVOICE()
     },
