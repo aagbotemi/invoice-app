@@ -2,12 +2,12 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAOd0tz9Ybj_T4Ve6dhngJ2pHYggGxMjr0',
-  authDomain: 'invoice-app-ff149.firebaseapp.com',
-  projectId: 'invoice-app-ff149',
-  storageBucket: 'invoice-app-ff149.appspot.com',
-  messagingSenderId: '961399776915',
-  appId: '1:961399776915:web:d077f0ec145259e7f80f66'
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_API_AUTHDOMAIN,
+  projectId: process.env.FIREBASE_API_PROJECTID,
+  storageBucket: process.env.FIREBASE_API_STORAGEBUCKET,
+  messagingSenderId: process.env.FIREBASE_API_MESSAGINGSENDERID,
+  appId: process.env.FIREBASE_API_APPID
 }
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig)
